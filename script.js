@@ -40,12 +40,15 @@ const squareEls = document.querySelectorAll(".sqr")
 
 const messageEl = document.querySelector("#message")
 
+const resetBtnEl = document.querySelector("#reset")
+
 //Functions
 const init = () => {
   board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   turn = "X"
   winner = false
   tie = false
+  render()
 }
 
 const placePiece = (index) => {
@@ -118,9 +121,12 @@ const checkForWinner = () => {
 const checkForTie = () => {
   if (winner === true) return
   //else if (!board.includes(" ")) {
+  tie = true
   board.forEach((ele, index) => {
-    if (ele !== " ") tie = true
-    else tie = false
+    if (ele === " ") tie = false
+    // else {
+    //   tie = true
+    // }
   })
 }
 // tie = true
@@ -175,3 +181,5 @@ init()
 document.querySelectorAll(".sqr").forEach((square) => {
   square.addEventListener("click", handleClick)
 })
+
+resetBtnEl.addEventListener("click", init)
